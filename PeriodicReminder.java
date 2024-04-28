@@ -33,8 +33,6 @@ public class PeriodicReminder {
         public ReminderTask(String reminderMessage) {
             this.reminderMessage = reminderMessage;
         }
-
-        @Override
         public void run() {
             System.out.println("Reminder: " + reminderMessage);
         }
