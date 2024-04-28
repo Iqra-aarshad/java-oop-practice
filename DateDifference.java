@@ -1,30 +1,22 @@
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class DateDifference {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter the first date:");
-        String firstDateString = sc.nextLine();
-
-        System.out.print("Enter the second date: ");
-        String secondDateString = sc.nextLine();
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date firstDate = dateFormat.parse(firstDateString);
-            Date secondDate = dateFormat.parse(secondDateString);
-
-            long difference = Math.abs(secondDate.getTime() - firstDate.getTime());
-            long differenceInDays = difference / (24 * 60 * 60 * 1000);
-
-            System.out.println("The difference between the two dates is " + differenceInDays + " days.");
-        } catch (Exception e) {
-            System.out.println("Invalid date format.");
-        }
-
-        sc.close();
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter the first date (YYYY-MM-DD):");
+        String firstDateStr = scanner.next();
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        
+        System.out.println("Enter the second date (YYYY-MM-DD):");
+        String secondDateStr = scanner.next();
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+        
+        long differenceInDays = ChronoUnit.DAYS.between(firstDate, secondDate);
+        System.out.println("Difference between the two dates in days: " + Math.abs(differenceInDays));
+        
+        scanner.close();
     }
 }
